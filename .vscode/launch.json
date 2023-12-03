@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/adel/Documents/Python_projects/Coder-Avec-Adel/tictactoe_cpp",
+      "program": "/Users/adel/Documents/Python_projects/Coder-Avec-Adel/tictactoe_cpp/build/Debug/outDebug"
+    }
+  ]
+}
