@@ -2,8 +2,7 @@
 #include <stdlib.h>
 using namespace std;
 
-char board[3][3] = {{'1','2','3'},{'4','5','6'},{'7','8','9'}};
-int boardint[3][3];
+
 
 bool fin(char board[3][3], char joueur) {
     int index = 0;
@@ -79,6 +78,8 @@ void jouer(char joueur, char board[3][3], string jn, int boardint[3][3]) {
 }
 
 void board_ui(){
+    char board[3][3] = {{'1','2','3'},{'4','5','6'},{'7','8','9'}};
+    int boardint[3][3];
     cout<<"\t  "<<board[0][0]<<"  |  "<<board[0][1]<<"  |  "<<board[0][2]<<"\n";
     cout<<"\t-----------------"<<endl;
     cout<<"\t  "<<board[1][0]<<"  |  "<<board[1][1]<<"  |  "<<board[1][2]<<"\n";
@@ -92,33 +93,85 @@ void board_ui(){
     cin>>j2;
     bool gameover = false;
     int round = 1;
+    int score1 = 0;
+    int score2 = 0;
     while (!gameover) {
-        if (round>9) {
-            cout << "Fin du jeu"<<endl;
-            break;
-        }
-        cout << endl;
-        if (round%2!=0) {
-            jouer('X',board,j1,boardint);
-            if (fin(board,'X')) {
-                cout<<j1<<" a gagne!"<<endl;
-                gameover = true;
+        char board[3][3] = {{'1','2','3'},{'4','5','6'},{'7','8','9'}};
+        int boardint[3][3];
+        round = 1;
+        gameover = false;
+        while (true) {
+            cout<<"\t  "<<board[0][0]<<"  |  "<<board[0][1]<<"  |  "<<board[0][2]<<"\n";
+            cout<<"\t-----------------"<<endl;
+            cout<<"\t  "<<board[1][0]<<"  |  "<<board[1][1]<<"  |  "<<board[1][2]<<"\n";
+            cout<<"\t-----------------"<<endl;
+            cout<<"\t  "<<board[2][0]<<"  |  "<<board[2][1]<<"  |  "<<board[2][2]<<"\n";
+            if (round>9) {
+                cout << "Fin du jeu"<<endl;
+                break;
             }
-        }
-        else {
-            jouer('O',board,j2,boardint);
-            if (fin(board,'O')) {
-                cout<<j2<<" a gagne!"<<endl;
-                gameover = true;
+            cout << endl;
+            if (round%2!=0) {
+                jouer('X',board,j1,boardint);
+                if (fin(board,'X')) {
+                    cout<<"\t  "<<board[0][0]<<"  |  "<<board[0][1]<<"  |  "<<board[0][2]<<"\n";
+                    cout<<"\t-----------------"<<endl;
+                    cout<<"\t  "<<board[1][0]<<"  |  "<<board[1][1]<<"  |  "<<board[1][2]<<"\n";
+                    cout<<"\t-----------------"<<endl;
+                    cout<<"\t  "<<board[2][0]<<"  |  "<<board[2][1]<<"  |  "<<board[2][2]<<"\n";
+                    score1++;
+                    cout<<j1<<" a gagne!"<<endl;
+                    cout<<j1<<": "<<score1<<", "<<j2<<": "<<score2<<endl;
+                    char choix_user;
+                    cout<<"Continuer? (Y/N) ";
+                    cin>>choix_user;
+                    if (choix_user=='N') {
+                        gameover = true;
+                        break;
+                    }
+                    else {
+                        char board[3][3] = {{'1','2','3'},{'4','5','6'},{'7','8','9'}};
+                        int boardint[3][3];
+                        round = 1;
+                        gameover = false;
+                        break;
+                    }
+                        
+                }
             }
+            else {
+                jouer('O',board,j2,boardint);
+                if (fin(board,'O')) {
+                    cout<<"\t  "<<board[0][0]<<"  |  "<<board[0][1]<<"  |  "<<board[0][2]<<"\n";
+                    cout<<"\t-----------------"<<endl;
+                    cout<<"\t  "<<board[1][0]<<"  |  "<<board[1][1]<<"  |  "<<board[1][2]<<"\n";
+                    cout<<"\t-----------------"<<endl;
+                    cout<<"\t  "<<board[2][0]<<"  |  "<<board[2][1]<<"  |  "<<board[2][2]<<"\n";
+                    score2++;
+                    cout<<j2<<" a gagne!"<<endl;
+                    cout<<j1<<": "<<score1<<", "<<j2<<": "<<score2<<endl;
+                    char choix_user;
+                    cout<<"Continuer? (Y/N) ";
+                    cin>>choix_user;
+                    if (choix_user=='N') {
+                        gameover = true;
+                    }
+                }
+            }
+            
+            round++;
         }
-        cout<<"\t  "<<board[0][0]<<"  |  "<<board[0][1]<<"  |  "<<board[0][2]<<"\n";
-        cout<<"\t-----------------"<<endl;
-        cout<<"\t  "<<board[1][0]<<"  |  "<<board[1][1]<<"  |  "<<board[1][2]<<"\n";
-        cout<<"\t-----------------"<<endl;
-        cout<<"\t  "<<board[2][0]<<"  |  "<<board[2][1]<<"  |  "<<board[2][2]<<"\n";
-        round++;
     }
+    if (score1>score2) {
+        cout<<j1<<" a gagner la partie!"<<endl;
+    }
+    else if(score1<score2) {
+        cout<<j2<<" a gagner la partie!"<<endl;
+    }
+    else {
+        cout<<"Match nul!"<<endl;
+    }
+        
     
 }
 
