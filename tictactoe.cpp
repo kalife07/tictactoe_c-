@@ -9,7 +9,6 @@ bool fin(char board[3][3], char joueur) {
     int index = 0;
     for (int i=0;i<3;i++) {
         for (int j=0;j<3;j++) {
-            //cout<<"index: "<<index<<endl;
             if (board[i][j]==joueur) {
                 index++;
             }        
@@ -33,12 +32,10 @@ bool fin(char board[3][3], char joueur) {
     }
 
     if (board[0][0]==board[1][1] && board[1][1]==board[2][2]) {
-        //cout<<"test gagnant"<<endl;
         return true;
     }
 
     if (board[0][2]==board[1][1] && board[1][1]==board[2][0]) {
-        //cout<<"test gagnant"<<endl;
         return true;
     }
 
